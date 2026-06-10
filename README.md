@@ -5,6 +5,14 @@
 **Tech stack:** Next.js 14 (App Router) · Prisma · PostgreSQL · NextAuth (Google OAuth) · Stripe · Tailwind CSS · Custom Rich Text Editor · OpenAI gpt-5-chat · MuAPI
 **Use cases:** Content marketing teams · Affiliate blog networks · SEO content production · Agency blog management · Multi-author publications · Programmatic SEO · Niche site building · Newsletter writing · Documentation drafting
 
+<p align="center">
+  <a href="https://github.com/Anil-matcha/awesome-generative-ai-apps">
+    <img src="https://img.shields.io/badge/Part%20of-Awesome%20Generative%20AI%20Apps-FFD700?style=for-the-badge&logo=github&logoColor=black" alt="Awesome Generative AI Apps">
+  </a>
+</p>
+
+> 🎨 **[Explore 50+ more open-source AI apps →](https://github.com/Anil-matcha/awesome-generative-ai-apps)**
+
 ## 🌐 Project Repository
 
 **GitHub Repository:** [github.com/SamurAIGPT/blogger-cms](https://github.com/SamurAIGPT/blogger-cms)
