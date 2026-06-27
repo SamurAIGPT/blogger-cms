@@ -1,5 +1,6 @@
 const config = {
   appName: "Blogger Cms",
+  theme: process.env.NEXT_PUBLIC_THEME || "slate-indigo",
   auth: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID,

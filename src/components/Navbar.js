@@ -5,7 +5,14 @@ import { useSession, signOut } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { IoClose, IoMenu } from "react-icons/io5";
-import { FiMoon, FiSun, FiLogOut, FiDollarSign, FiPlus, FiUser } from "react-icons/fi";
+import {
+  FiMoon,
+  FiSun,
+  FiLogOut,
+  FiDollarSign,
+  FiPlus,
+  FiUser,
+} from "react-icons/fi";
 import { SiVercel } from "react-icons/si";
 import config from "@/lib/config";
 
@@ -34,16 +41,18 @@ export default function Navbar() {
       ]
     : [
         { name: "Workspace", path: "/" },
-        { name: "Gallery", path: "/gallery" },
+        { name: "Gallery", path: "/gallery/blog-list" },
         { name: "Pricing", path: "/pricing" },
       ];
 
   return (
     <header className="sticky top-0 z-50 w-full glass-panel border-b border-divider/50 shadow-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        
         {/* Logo and Brand Title (Visible at all times) */}
-        <Link href="/" className="flex items-center gap-2 transition-transform hover:scale-[1.02] active:scale-95">
+        <Link
+          href="/"
+          className="flex items-center gap-2 transition-transform hover:scale-[1.02] active:scale-95"
+        >
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-white font-extrabold text-lg shadow-md shadow-primary/30">
             {logoLetter}
           </div>
@@ -61,7 +70,9 @@ export default function Navbar() {
                 key={link.name}
                 href={link.path}
                 className={`text-[13px] font-semibold transition-all relative py-1 ${
-                  isActive ? "text-primary" : "text-secondary-text hover:text-primary-text"
+                  isActive
+                    ? "text-primary"
+                    : "text-secondary-text hover:text-primary-text"
                 }`}
               >
                 {link.name}
@@ -75,7 +86,6 @@ export default function Navbar() {
 
         {/* Desktop Actions Section */}
         <div className="hidden md:flex items-center gap-4">
-          
           {/* Vercel Deploy Button */}
           <a
             href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FSamurAIGPT%2Fcommon-saas-template"
@@ -93,7 +103,9 @@ export default function Navbar() {
               <div className="flex items-center h-9 border border-divider rounded-l bg-bg-page/30 overflow-hidden pr-2">
                 <span className="font-bold text-[13px] px-3 flex items-center text-primary-text gap-1">
                   <FiDollarSign className="text-emerald-500 text-xs" />
-                  {session.user.credits !== undefined ? session.user.credits : 0}
+                  {session.user.credits !== undefined
+                    ? session.user.credits
+                    : 0}
                 </span>
                 <Link
                   href="/pricing"
@@ -156,7 +168,7 @@ export default function Navbar() {
               {session.user.credits !== undefined ? session.user.credits : 0}
             </div>
           )}
-          
+
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="hover:bg-bg-card p-2 rounded cursor-pointer transition-colors text-primary-text border border-divider/50"
@@ -171,14 +183,18 @@ export default function Navbar() {
       {isOpen && (
         <div className="absolute top-full left-0 right-0 z-[200] glass-dropdown border-b border-divider shadow-2xl py-4 px-6 md:hidden animate-fade-in">
           <nav className="flex flex-col gap-3">
-            <span className="text-[10px] uppercase font-bold text-secondary-text tracking-widest mb-1">Navigation</span>
+            <span className="text-[10px] uppercase font-bold text-secondary-text tracking-widest mb-1">
+              Navigation
+            </span>
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.path}
                 onClick={() => setIsOpen(false)}
                 className={`flex items-center py-2.5 rounded text-sm font-semibold transition-all ${
-                  pathname === link.path ? "bg-primary/10 text-primary px-3 border border-primary/20" : "text-primary-text hover:bg-bg-card"
+                  pathname === link.path
+                    ? "bg-primary/10 text-primary px-3 border border-primary/20"
+                    : "text-primary-text hover:bg-bg-card"
                 }`}
               >
                 {link.name}

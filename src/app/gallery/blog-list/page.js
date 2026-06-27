@@ -154,16 +154,16 @@ function BlogListContent() {
 
   if (!session) {
     return (
-      <div className="flex-1 flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-950 p-6">
-        <div className="max-w-md w-full text-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-xl">
-          <div className="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-4 text-indigo-600">
+      <div className="flex-1 flex flex-col items-center justify-center bg-bg-page p-6">
+        <div className="max-w-md w-full text-center bg-bg-card border border-divider/50 rounded-3xl p-8 shadow-xl">
+          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 text-primary">
             <FaUserLock className="text-2xl" />
           </div>
-          <h3 className="text-lg font-extrabold text-slate-900 dark:text-white mb-2">Access Denied</h3>
-          <p className="text-slate-500 text-sm mb-6">Please sign in to organize, edit, and publish blog articles.</p>
+          <h3 className="text-lg font-extrabold text-primary-text mb-2">Access Denied</h3>
+          <p className="text-secondary-text text-sm mb-6">Please sign in to organize, edit, and publish blog articles.</p>
           <button
             onClick={() => signIn("google")}
-            className="w-full py-3 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-md transition-all cursor-pointer"
+            className="w-full py-3 text-xs font-bold text-white bg-primary hover:bg-primary-hover rounded-xl shadow-md transition-all cursor-pointer"
           >
             Sign in with Google
           </button>
@@ -173,19 +173,19 @@ function BlogListContent() {
   }
 
   return (
-    <div className="flex flex-1 h-full w-full overflow-hidden bg-slate-50 dark:bg-slate-950">
+    <div className="flex flex-1 h-full w-full overflow-hidden bg-bg-page">
       {/* Sidebar - Blog Group Management */}
-      <div className="w-80 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col h-full overflow-hidden">
+      <div className="w-80 border-r border-divider/50 bg-bg-card flex flex-col h-full overflow-hidden">
         {/* Create Group Form */}
-        <div className="p-5 border-b border-slate-200 dark:border-slate-800">
-          <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Blog Groups</h3>
+        <div className="p-5 border-b border-divider/50">
+          <h3 className="text-xs font-bold text-secondary-text uppercase tracking-wider mb-3">Blog Groups</h3>
           <form onSubmit={handleCreateGroup} className="flex gap-2">
             <input
               type="text"
               placeholder="e.g. Personal Blog"
               value={newGroupName}
               onChange={(e) => setNewGroupName(e.target.value)}
-              className="flex-1 px-3 py-2 text-xs bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg focus:outline-none focus:ring-1 focus:ring-indigo-500 text-slate-900 dark:text-white"
+              className="flex-1 px-3 py-2 text-xs bg-bg-page border border-divider/50 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary text-primary-text"
             />
             <button
               type="submit"
@@ -201,10 +201,10 @@ function BlogListContent() {
         <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-1">
           {loadingGroups ? (
             <div className="flex justify-center p-6">
-              <FaSpinner className="animate-spin text-indigo-600 text-lg" />
+              <FaSpinner className="animate-spin text-primary text-lg" />
             </div>
           ) : groups.length === 0 ? (
-            <div className="text-center p-6 text-slate-400 text-xs">
+            <div className="text-center p-6 text-secondary-text text-xs">
               No groups created yet. Add one above.
             </div>
           ) : (
@@ -216,25 +216,25 @@ function BlogListContent() {
                   onClick={() => setSelectedGroupId(group.id)}
                   className={`flex items-center justify-between p-3 rounded-xl cursor-pointer transition-all ${
                     isSelected
-                      ? "bg-indigo-50 dark:bg-slate-800/40 text-indigo-700 dark:text-indigo-400 font-bold border border-indigo-100 dark:border-slate-700"
-                      : "text-slate-600 hover:bg-slate-100/50 hover:text-slate-950 dark:text-slate-400 dark:hover:bg-slate-800/20"
+                      ? "bg-primary/10 text-primary font-bold border border-primary/20"
+                      : "text-secondary-text hover:bg-bg-card-hover hover:text-primary-text"
                   }`}
                 >
                   <div className="flex items-center gap-2.5 min-w-0">
                     {isSelected ? (
-                      <FaFolderOpen className="text-indigo-600 text-sm flex-shrink-0" />
+                      <FaFolderOpen className="text-primary text-sm flex-shrink-0" />
                     ) : (
-                      <FaFolder className="text-slate-400 text-sm flex-shrink-0" />
+                      <FaFolder className="text-secondary-text text-sm flex-shrink-0" />
                     )}
                     <span className="text-xs truncate">{group.name}</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <span className="text-[10px] bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-500 font-bold">
+                    <span className="text-[10px] bg-bg-page border border-divider/50 px-2 py-0.5 rounded text-secondary-text font-bold">
                       {group._count?.blogs || 0}
                     </span>
                     <button
                       onClick={(e) => handleDeleteGroup(group.id, e)}
-                      className="p-1.5 text-slate-400 hover:text-red-600 rounded transition-colors cursor-pointer"
+                      className="p-1.5 text-secondary-text hover:text-red-500 rounded transition-colors cursor-pointer"
                       title="Delete Group"
                     >
                       <FaTrashAlt className="text-[10px]" />
@@ -251,18 +251,18 @@ function BlogListContent() {
       <div className="flex-1 flex flex-col h-full overflow-y-auto p-6 md:p-8">
         <div className="max-w-5xl mx-auto w-full flex flex-col gap-6">
           {/* Header Action Bar */}
-          <div className="flex items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
+          <div className="flex items-center justify-between gap-4 border-b border-divider/50 pb-4">
             <div>
-              <h1 className="text-xl font-extrabold text-slate-950 dark:text-white">
+              <h1 className="text-xl font-extrabold text-primary-text">
                 {groups.find((g) => g.id === selectedGroupId)?.name || "Blog Dashboard"}
               </h1>
-              <p className="text-xs text-slate-500">Manage and publish articles inside this folder group.</p>
+              <p className="text-xs text-secondary-text">Manage and publish articles inside this folder group.</p>
             </div>
 
             {selectedGroupId && (
               <button
                 onClick={() => router.push(`/?groupId=${selectedGroupId}`)}
-                className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-md active:scale-[0.98] transition-all cursor-pointer"
+                className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-white bg-primary hover:bg-primary-hover rounded-lg shadow-md active:scale-[0.98] transition-all cursor-pointer"
               >
                 <FaPlus className="text-xs" />
                 <span>New Blog</span>
@@ -272,23 +272,23 @@ function BlogListContent() {
 
           {/* Blogs list */}
           {loadingBlogs ? (
-            <div className="flex flex-col items-center justify-center p-12 text-slate-500">
-              <FaSpinner className="animate-spin text-3xl text-indigo-600 mb-2" />
+            <div className="flex flex-col items-center justify-center p-12 text-secondary-text">
+              <FaSpinner className="animate-spin text-3xl text-primary mb-2" />
               <span className="text-xs font-semibold">Loading blogs...</span>
             </div>
           ) : blogs.length === 0 ? (
-            <div className="flex flex-col items-center justify-center text-center p-12 bg-white dark:bg-slate-900 border border-dashed border-slate-200 dark:border-slate-800 rounded-3xl gap-4">
-              <div className="w-14 h-14 bg-slate-50 rounded-full flex items-center justify-center text-slate-400">
+            <div className="flex flex-col items-center justify-center text-center p-12 bg-bg-card border border-dashed border-divider rounded-3xl gap-4">
+              <div className="w-14 h-14 bg-bg-page rounded-full flex items-center justify-center text-secondary-text">
                 <FaRegFileAlt className="text-xl" />
               </div>
               <div>
-                <h4 className="text-sm font-bold text-slate-900 dark:text-white">No articles yet</h4>
-                <p className="text-xs text-slate-500 mt-1 max-w-sm">Write an article from scratch or generate content using AI writer cards.</p>
+                <h4 className="text-sm font-bold text-primary-text">No articles yet</h4>
+                <p className="text-xs text-secondary-text mt-1 max-w-sm">Write an article from scratch or generate content using AI writer cards.</p>
               </div>
               {selectedGroupId && (
                 <button
                   onClick={() => router.push(`/?groupId=${selectedGroupId}`)}
-                  className="px-4 py-2 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-md cursor-pointer"
+                  className="px-4 py-2 text-xs font-bold text-white bg-primary hover:bg-primary-hover rounded-lg shadow-md cursor-pointer"
                 >
                   Create first blog post
                 </button>
@@ -299,28 +299,28 @@ function BlogListContent() {
               {blogs.map((blog) => (
                 <div 
                   key={blog.id} 
-                  className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4 hover:shadow-md transition-shadow"
+                  className="bg-bg-card border border-divider/50 p-5 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4 hover:shadow-md transition-shadow"
                 >
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-2">
                       <span className={`text-[10px] font-extrabold uppercase px-2 py-0.5 rounded ${
                         blog.status === "published"
-                          ? "bg-indigo-50 border border-indigo-200 text-indigo-600"
+                          ? "bg-primary/10 border border-primary/20 text-primary"
                           : blog.status === "processing"
-                            ? "bg-violet-50 border border-violet-200 text-violet-600 animate-pulse"
-                            : "bg-slate-100 border border-slate-200 text-slate-600"
+                            ? "bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 animate-pulse"
+                            : "bg-bg-page border border-divider/50 text-secondary-text"
                       }`}>
                         {blog.status}
                       </span>
-                      <span className="text-[10px] text-slate-400">
+                      <span className="text-[10px] text-secondary-text">
                         Updated {new Date(blog.updateTime).toLocaleDateString()}
                       </span>
                     </div>
 
-                    <h3 className="text-sm font-extrabold text-slate-950 dark:text-white truncate">
+                    <h3 className="text-sm font-extrabold text-primary-text truncate">
                       {blog.title}
                     </h3>
-                    <p className="text-xs text-slate-500 mt-1 line-clamp-1">
+                    <p className="text-xs text-secondary-text mt-1 line-clamp-1">
                       By {blog.author} {blog.keyword ? `• Keyword: ${blog.keyword}` : ""}
                     </p>
                   </div>
@@ -330,7 +330,7 @@ function BlogListContent() {
                       <>
                         <button
                           onClick={() => router.push(`/?id=${blog.id}`)}
-                          className="p-2 text-slate-600 hover:text-indigo-600 bg-slate-50 hover:bg-indigo-50 dark:bg-slate-950 dark:hover:bg-indigo-950/20 border border-slate-200 dark:border-slate-800 rounded-lg transition-colors cursor-pointer"
+                          className="p-2 text-secondary-text hover:text-primary bg-bg-page hover:bg-bg-card-hover border border-divider/50 rounded-lg transition-colors cursor-pointer"
                           title="Edit Post"
                         >
                           <FaPen className="text-xs" />
@@ -339,8 +339,8 @@ function BlogListContent() {
                           onClick={() => handleTogglePublish(blog)}
                           className={`flex items-center gap-1 px-3 py-1.5 text-xs font-semibold border rounded-lg transition-all cursor-pointer ${
                             blog.status === "published"
-                              ? "bg-amber-50 hover:bg-amber-100 border-amber-200 text-amber-600"
-                              : "bg-indigo-50 hover:bg-indigo-100 border-indigo-200 text-indigo-600"
+                              ? "bg-amber-500/10 hover:bg-amber-500/20 border-amber-500/30 text-amber-500"
+                              : "bg-primary/10 hover:bg-primary/20 border-primary/30 text-primary"
                           }`}
                           title={blog.status === "published" ? "Unpublish Post" : "Publish Post"}
                         >
@@ -351,7 +351,7 @@ function BlogListContent() {
                     )}
                     <button
                       onClick={() => handleDeleteBlog(blog.id)}
-                      className="p-2 text-slate-400 hover:text-red-600 bg-slate-50 hover:bg-red-50 dark:bg-slate-950 dark:hover:bg-red-950/20 border border-slate-200 dark:border-slate-800 rounded-lg transition-colors cursor-pointer"
+                      className="p-2 text-secondary-text hover:text-red-500 bg-bg-page hover:bg-bg-card-hover border border-divider/50 rounded-lg transition-colors cursor-pointer"
                       title="Delete Post"
                     >
                       <FaTrashAlt className="text-xs" />
@@ -370,8 +370,8 @@ function BlogListContent() {
 export default function BlogDashboardPage() {
   return (
     <Suspense fallback={
-      <div className="flex-1 flex items-center justify-center bg-slate-50 dark:bg-slate-950">
-        <FaSpinner className="text-4xl text-indigo-600 animate-spin" />
+      <div className="flex-1 flex items-center justify-center bg-bg-page">
+        <FaSpinner className="text-4xl text-primary animate-spin" />
       </div>
     }>
       <BlogListContent />

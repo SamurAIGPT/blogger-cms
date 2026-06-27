@@ -35,9 +35,9 @@ export function RichTextEditor({ value, onChange, placeholder = "Start writing y
   };
 
   return (
-    <div className="w-full relative border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-white dark:bg-slate-900 shadow-sm">
+    <div className="w-full relative border border-divider/50 rounded-xl overflow-hidden bg-bg-card shadow-sm">
       {/* Toolbar */}
-      <div className="flex flex-wrap items-center gap-1.5 p-3 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
+      <div className="flex flex-wrap items-center gap-1.5 p-3 border-b border-divider/50 bg-bg-page/50">
         <button
           type="button"
           onMouseDown={(e) => {
@@ -45,7 +45,7 @@ export function RichTextEditor({ value, onChange, placeholder = "Start writing y
             executeCommand("formatBlock", "<p>");
           }}
           title="Paragraph"
-          className="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
+          className="p-2 text-secondary-text hover:bg-bg-card-hover hover:text-primary-text rounded-lg transition-colors cursor-pointer"
         >
           <FaParagraph className="text-sm" />
         </button>
@@ -56,7 +56,7 @@ export function RichTextEditor({ value, onChange, placeholder = "Start writing y
             executeCommand("formatBlock", "<h2>");
           }}
           title="Heading 2"
-          className="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer flex items-center gap-0.5"
+          className="p-2 text-secondary-text hover:bg-bg-card-hover hover:text-primary-text rounded-lg transition-colors cursor-pointer flex items-center gap-0.5"
         >
           <FaHeading className="text-xs" />
           <span className="text-[10px] font-bold">2</span>
@@ -68,12 +68,12 @@ export function RichTextEditor({ value, onChange, placeholder = "Start writing y
             executeCommand("formatBlock", "<h3>");
           }}
           title="Heading 3"
-          className="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer flex items-center gap-0.5"
+          className="p-2 text-secondary-text hover:bg-bg-card-hover hover:text-primary-text rounded-lg transition-colors cursor-pointer flex items-center gap-0.5"
         >
           <FaHeading className="text-xs" />
           <span className="text-[10px] font-bold">3</span>
         </button>
-        <div className="w-px h-6 bg-slate-200 dark:bg-slate-800 mx-1" />
+        <div className="w-px h-6 bg-divider/50 mx-1" />
         <button
           type="button"
           onMouseDown={(e) => {
@@ -81,7 +81,7 @@ export function RichTextEditor({ value, onChange, placeholder = "Start writing y
             executeCommand("bold");
           }}
           title="Bold"
-          className="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
+          className="p-2 text-secondary-text hover:bg-bg-card-hover hover:text-primary-text rounded-lg transition-colors cursor-pointer"
         >
           <FaBold className="text-sm" />
         </button>
@@ -92,7 +92,7 @@ export function RichTextEditor({ value, onChange, placeholder = "Start writing y
             executeCommand("italic");
           }}
           title="Italic"
-          className="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
+          className="p-2 text-secondary-text hover:bg-bg-card-hover hover:text-primary-text rounded-lg transition-colors cursor-pointer"
         >
           <FaItalic className="text-sm" />
         </button>
@@ -103,11 +103,11 @@ export function RichTextEditor({ value, onChange, placeholder = "Start writing y
             executeCommand("underline");
           }}
           title="Underline"
-          className="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
+          className="p-2 text-secondary-text hover:bg-bg-card-hover hover:text-primary-text rounded-lg transition-colors cursor-pointer"
         >
           <FaUnderline className="text-sm" />
         </button>
-        <div className="w-px h-6 bg-slate-200 dark:bg-slate-800 mx-1" />
+        <div className="w-px h-6 bg-divider/50 mx-1" />
         <button
           type="button"
           onMouseDown={(e) => {
@@ -115,7 +115,7 @@ export function RichTextEditor({ value, onChange, placeholder = "Start writing y
             executeCommand("insertUnorderedList");
           }}
           title="Bullet List"
-          className="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
+          className="p-2 text-secondary-text hover:bg-bg-card-hover hover:text-primary-text rounded-lg transition-colors cursor-pointer"
         >
           <FaListUl className="text-sm" />
         </button>
@@ -126,7 +126,7 @@ export function RichTextEditor({ value, onChange, placeholder = "Start writing y
             executeCommand("insertOrderedList");
           }}
           title="Numbered List"
-          className="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
+          className="p-2 text-secondary-text hover:bg-bg-card-hover hover:text-primary-text rounded-lg transition-colors cursor-pointer"
         >
           <FaListOl className="text-sm" />
         </button>
@@ -137,12 +137,12 @@ export function RichTextEditor({ value, onChange, placeholder = "Start writing y
         ref={editorRef}
         contentEditable
         onInput={handleInput}
-        className="w-full min-h-[350px] max-h-[600px] overflow-y-auto p-5 outline-none prose prose-slate max-w-none dark:prose-invert focus:ring-0 dark:bg-slate-900 dark:text-slate-100"
+        className="w-full min-h-[350px] max-h-[600px] overflow-y-auto p-5 outline-none prose prose-slate max-w-none dark:prose-invert focus:ring-0 bg-bg-card text-primary-text"
         placeholder={placeholder}
         style={{ minHeight: "400px" }}
       />
       {isEmptyHtml(html) && (
-        <div className="absolute top-[80px] left-[20px] pointer-events-none text-slate-400 text-sm select-none">
+        <div className="absolute top-[80px] left-[20px] pointer-events-none text-secondary-text text-sm select-none">
           {placeholder}
         </div>
       )}
